@@ -1,6 +1,11 @@
-// Pengecekan angka positif, negatif, atau 0 dengan nested if
+const numberChecker = (number) => {
+  if (number > 0) {
+    return "Bilangan positif";
+  } else if (number === 0) {
+    return "Bilangan nol";
+  } else {
+    return "Bilangan negatif";
+  }
+};
 
-// Masukan suatu angka
-const number = parseInt(prompt("Masukan bilangan: "));
-
-// TODO: answer here
+module.exports = numberChecker;
