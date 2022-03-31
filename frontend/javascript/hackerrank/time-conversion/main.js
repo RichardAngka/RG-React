@@ -14,18 +14,19 @@
 function timeConversion(s) {
   // Write your code here
   // TODO: answer here
-  var time = s.split(":");
-  var hour = parseInt(time[0]);
-  var minute = time[1];
-  var second = time[2];
-  var ampm = time[3];
-  if (ampm === "PM") {
-    if (hour !== 12) {
-      hour += 12;
+  var hour = parseInt(s.slice(0, 2));
+  var minute = s.slice(3, 5);
+  var second = s.slice(6, 8);
+  var ampm = s.slice(8, 10);
+  if (ampm === "AM") {
+    if (hour === 12) {
+      hour = "0" + 0;
     }
   }
-  if (ampm === "AM" && hour === 12) {
-    hour = 0;
+  if (ampm === "PM") {
+    if (hour < 12) {
+      hour += 12;
+    }
   }
   return hour + ":" + minute + ":" + second;
 }
