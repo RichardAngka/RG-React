@@ -37,49 +37,59 @@
 
 function fixData(line) {
   // TODO: answer here
-  var lineArray = line.split("");
-  var lineLength = lineArray.length;
+  if (line === "") {
+    return "invalid data";
+  }
+  var lineArr = line.split("");
+  var lineLength = lineArr.length;
   var countVowel = 0;
   var countConsonant = 0;
+  var countVirus = 0;
   var result = "";
   for (var i = 0; i < lineLength; i++) {
     if (
-      lineArray[i] === "a" ||
-      lineArray[i] === "i" ||
-      lineArray[i] === "u" ||
-      lineArray[i] === "e" ||
-      lineArray[i] === "o"
+      lineArr[i] === "a" ||
+      lineArr[i] === "i" ||
+      lineArr[i] === "u" ||
+      lineArr[i] === "e" ||
+      lineArr[i] === "o"
     ) {
       countVowel++;
-    } else if (lineArray[i] === "#") {
+    } else if (lineArr[i] === "#") {
+      countVirus++;
+    } else {
       countConsonant++;
     }
   }
   if (countVowel > countConsonant) {
     for (var j = 0; j < lineLength; j++) {
-      if (lineArray[j] === "#") {
-        lineArray[j] = "a";
-      }
-    }
-  } else if (countVowel < countConsonant) {
-    for (var k = 0; k < lineLength; k++) {
-      if (lineArray[k] === "#") {
-        lineArray[k] = "b";
-      }
-    }
-  } else if (countVowel === countConsonant) {
-    for (var l = 0; l < lineLength; l++) {
-      if (lineArray[l] === "#") {
-        lineArray[l] = "c";
+      if (lineArr[j] === "#") {
+        lineArr[j] = "b";
       }
     }
   }
-  result = lineArray.join("");
+  if (countVowel < countConsonant) {
+    for (var k = 0; k < lineLength; k++) {
+      if (lineArr[k] === "#") {
+        lineArr[k] = "a";
+      }
+    }
+  }
+  if (countVowel === countConsonant) {
+    for (var l = 0; l < lineLength; l++) {
+      if (lineArr[l] === "#") {
+        lineArr[l] = "c";
+      }
+    }
+  }
+  for (var m = 0; m < lineLength; m++) {
+    result += lineArr[m];
+  }
   return result;
 }
 
 console.log(fixData("aoi#fdg#ue"));
 console.log(fixData("eh#xyz#oi#"));
-console.log(fixData("#eui#bcl##"));
+console.log(fixData("aiu#bcd#ab"));
 
 module.exports = fixData;
