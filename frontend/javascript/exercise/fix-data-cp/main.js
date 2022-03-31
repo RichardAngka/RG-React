@@ -37,10 +37,49 @@
 
 function fixData(line) {
   // TODO: answer here
+  var lineArray = line.split("");
+  var lineLength = lineArray.length;
+  var countVowel = 0;
+  var countConsonant = 0;
+  var result = "";
+  for (var i = 0; i < lineLength; i++) {
+    if (
+      lineArray[i] === "a" ||
+      lineArray[i] === "i" ||
+      lineArray[i] === "u" ||
+      lineArray[i] === "e" ||
+      lineArray[i] === "o"
+    ) {
+      countVowel++;
+    } else if (lineArray[i] === "#") {
+      countConsonant++;
+    }
+  }
+  if (countVowel > countConsonant) {
+    for (var j = 0; j < lineLength; j++) {
+      if (lineArray[j] === "#") {
+        lineArray[j] = "a";
+      }
+    }
+  } else if (countVowel < countConsonant) {
+    for (var k = 0; k < lineLength; k++) {
+      if (lineArray[k] === "#") {
+        lineArray[k] = "b";
+      }
+    }
+  } else if (countVowel === countConsonant) {
+    for (var l = 0; l < lineLength; l++) {
+      if (lineArray[l] === "#") {
+        lineArray[l] = "c";
+      }
+    }
+  }
+  result = lineArray.join("");
+  return result;
 }
 
-console.log(fixData('aoi#fdg#ue'))
-console.log(fixData('eh#xyz#oi#'))
-console.log(fixData('#eui#bcl##'))
+console.log(fixData("aoi#fdg#ue"));
+console.log(fixData("eh#xyz#oi#"));
+console.log(fixData("#eui#bcl##"));
 
-module.exports = fixData
+module.exports = fixData;
