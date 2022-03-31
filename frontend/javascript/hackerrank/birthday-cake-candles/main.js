@@ -24,6 +24,7 @@ function birthdayCakeCandles(candles) {
       tallestCandleCount++;
     }
   }
+  return tallestCandleCount;
 }
 
 function main() {
