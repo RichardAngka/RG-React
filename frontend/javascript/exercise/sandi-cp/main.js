@@ -18,13 +18,43 @@ terjemahKataSandi = "PASUKAN 1, MAJU KE AREA 2, JAM 3 SORE"
 Lengkapilah function dengan input kata sandi dan output terjemahannya
 */
 
-
 function terjemahKataSandi(kataSandi) {
   // TODO: answer here
+  if (kataSandi === "") {
+    return "invalid data";
+  }
+  var kataSandiArr = kataSandi.split("");
+  var kataSandiLength = kataSandiArr.length;
+  var result = "";
+  for (var i = 0; i < kataSandiLength; i++) {
+    if (kataSandiArr[i] === "&") {
+      kataSandiArr.splice(i, 1);
+      i--;
+    } else if (kataSandiArr[i] === "%") {
+      kataSandiArr.splice(i, 1);
+      i--;
+    } else if (kataSandiArr[i] === "^") {
+      kataSandiArr.splice(i, 1);
+      i--;
+    } else if (kataSandiArr[i] === "#") {
+      kataSandiArr[i] = " ";
+    } else if (kataSandiArr[i] === "]") {
+      kataSandiArr[i] = ",";
+    } else if (kataSandiArr[i] === "+") {
+      kataSandiArr[i] = "A";
+    } else if (kataSandiArr[i] === " ") {
+      kataSandiArr[i] = "E";
+    }
+  }
+  result = kataSandiArr.join("");
+  return result;
 }
 
-
-console.log(terjemahKataSandi("&P%&+^S&^U&K+%N#1]#M&^+J^%%U#K #+^R&& +#2]#J+M#3#S^%%O&^R #"));
+console.log(
+  terjemahKataSandi(
+    "&P%&+^S&^U&K+%N#1]#M&^+J^%%U#K #+^R&& +#2]#J+M#3#S^%%O&^R #"
+  )
+);
 // PASUKAN 1, MAJU KE AREA 2, JAM 3 SORE
 
-module.exports = terjemahKataSandi
+module.exports = terjemahKataSandi;
