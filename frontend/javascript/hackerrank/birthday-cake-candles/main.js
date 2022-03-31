@@ -13,7 +13,17 @@
 
 function birthdayCakeCandles(candles) {
   // Write your code here
-	// TODO: answer here
+  // TODO: answer here
+  var tallestCandle = 0;
+  var tallestCandleCount = 0;
+  for (var i = 0; i < candles.length; i++) {
+    if (candles[i] > tallestCandle) {
+      tallestCandle = candles[i];
+      tallestCandleCount = 1;
+    } else if (candles[i] === tallestCandle) {
+      tallestCandleCount++;
+    }
+  }
 }
 
 function main() {
@@ -23,9 +33,8 @@ function main() {
   var ar = [3, 2, 1, 3]; // override input
   var result = birthdayCakeCandles(ar);
   console.log(result);
-
 }
 
 main(); // execute program
 
-module.exports = birthdayCakeCandles
+module.exports = birthdayCakeCandles;
