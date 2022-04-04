@@ -11,38 +11,57 @@ Setiap plat nomer di pisahkan oleh karakter ";"
 function ganjilGenap(plat) {
   // TODO: answer here
   if (plat === "") {
-    return "invalid data";
-  }
-  var platArr = plat.split(";");
-  var platLength = platArr.length;
-  var countOdd = 0;
-  var countEven = 0;
-  var result = "";
-  for (var i = 0; i < platLength; i++) {
-    if (platArr[i].length === 5) {
-      if (platArr[i][2] === "0") {
-        countOdd++;
-      } else {
-        countEven++;
+    return "plat tidak ditemukan";
+  } else if (plat != "") {
+    var platArr = plat.split(";");
+    var platLength = platArr.length;
+    var countOdd = 0;
+    var countEven = 0;
+    var result = "";
+    for (var i = 0; i < platLength; i++) {
+      if (platArr[i].length === 5) {
+        if (platArr[i][0] === "1") {
+          if (platArr[i][1] === "0") {
+            if (platArr[i][2] === "1") {
+              if (platArr[i][3] === "0") {
+                if (platArr[i][4] === "1") {
+                  countOdd++;
+                } else {
+                  countEven++;
+                }
+              } else {
+                countEven++;
+              }
+            } else {
+              countEven++;
+            }
+          } else {
+            countEven++;
+          }
+        } else {
+          countEven++;
+        }
       }
     }
+    if (countOdd > 0 && countEven === 0) {
+      result =
+        "plat ganjil sebanyak " + countOdd + " dan plat genap tidak ditemukan";
+    }
+    if (countEven > 0 && countOdd === 0) {
+      result =
+        "plat genap sebanyak " + countEven + " dan plat ganjil tidak ditemukan";
+    }
+    if (countOdd > 0 && countEven > 0) {
+      result =
+        "plat genap sebanyak " +
+        countEven +
+        " dan plat ganjil sebanyak " +
+        countOdd;
+    }
+    return result;
+  } else {
+    return "invalid data";
   }
-  if (countOdd > 0 && countEven === 0) {
-    result =
-      "plat ganjil sebanyak " + countOdd + " dan plat genap tidak ditemukan";
-  }
-  if (countEven > 0 && countOdd === 0) {
-    result =
-      "plat genap sebanyak " + countEven + " dan plat ganjil tidak ditemukan";
-  }
-  if (countOdd > 0 && countEven > 0) {
-    result =
-      "plat genap sebanyak " +
-      countEven +
-      " dan plat ganjil sebanyak " +
-      countOdd;
-  }
-  return result;
 }
 
 console.log(ganjilGenap("2341;3429;864;1309;1276")); //plat genap sebanyak 2 dan plat ganjil sebanyak 3
