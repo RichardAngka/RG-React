@@ -194,24 +194,38 @@ var quotes = [
 
 function getQuote() {
   // TODO: answer here
-  const randomNumber = Math.floor(Math.random() * quotes.length);
-  const quote = quotes[randomNumber];
-  const quoteText = quote.quote;
-  const quoteAuthor = quote.author;
-  const quoteCitation = quote.citation;
-  const quoteYear = quote.year;
-  const quoteHTML = `
-		<p class="quote">${quoteText}</p>
-		<p class="author">${quoteAuthor}</p>
-	`;
-  if (quoteCitation && quoteYear) {
-    quoteHTML += `
-			<p class="citation">${quoteCitation}</p>
-			<p class="year">${quoteYear}</p>
-		`;
+  let randomNumber = Math.floor(Math.random() * quotes.length);
+  console.log(randomNumber);
+  let randomQuote = quotes[randomNumber];
+  let quote = randomQuote.quote;
+  console.log(quote);
+  let author = randomQuote.author;
+  let citation = randomQuote.citation;
+  let year = randomQuote.year;
+  if (citation && year) {
+    document.getElementsByClassName("citation").innerHTML = citation;
+    document.getElementById("random-quote").innerHTML = quote;
+    document.getElementById("author").innerHTML = author;
+    document.getElementsByClassName("year").innerHTML = year;
+  } else if (citation && !year) {
+    document.getElementsByClassName("citation").innerHTML = citation;
+    document.getElementById("random-quote").innerHTML = quote;
+    document.getElementById("author").innerHTML = author;
+    document.getElementsByClassName("year").innerHTML = "";
+  } else if (!citation && year) {
+    document.getElementsByClassName("citation").innerHTML = "";
+    document.getElementById("random-quote").innerHTML = quote;
+    document.getElementById("author").innerHTML = author;
+    document.getElementsByClassName("year").innerHTML = year;
+  } else {
+    document.getElementsByClassName("citation").innerHTML = "";
+    document.getElementById("random-quote").innerHTML = quote;
+    document.getElementById("author").innerHTML = author;
+    document.getElementsByClassName("year").innerHTML = "";
   }
-  document.getElementById("quote-box").innerHTML = quoteHTML;
 }
+
+console.log(getQuote());
 
 function displayQuote() {
   // TODO: answer here
