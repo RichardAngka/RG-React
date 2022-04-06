@@ -17,19 +17,29 @@
   </head>
   <body>
     <div class="navbar">
-      <button class="btn btn-warning new-game" style="font-weight: bold;">New Game</button>
-      <p style="font-size: 1.5rem; font-weight: bold;">Guess any number between 1 and 10</p>
+      <button
+        onclick="resetGame()"
+        class="btn btn-warning new-game"
+        style="font-weight: bold"
+      >
+        New Game
+      </button>
+      <p style="font-size: 1.5rem; font-weight: bold">
+        Guess any number between 1 and 10
+      </p>
     </div>
     <div class="main">
       <div class="top">
         <h1>Guess My Number!</h1>
-        <div id="hidden-number" style="display: none;"></div>
+        <div id="hidden-number" style="display: none"></div>
         <div class="number">?</div>
       </div>
       <div class="bottom">
         <div class="left">
-          <input type="number" class="input">
-          <button class="btn btn-primary check">Check!</button>
+          <input type="number" class="input" />
+          <button onclick="checkNumber()" class="btn btn-primary check">
+            Check!
+          </button>
         </div>
         <div class="right">
           <p class="message">Lets start guessing...</p>
