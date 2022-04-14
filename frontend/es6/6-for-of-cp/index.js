@@ -10,6 +10,7 @@
 
 const convertElementToType = (array) => {
   // TODO: answer here
+  return array.map((item) => typeof item);
 };
 
-module.exports = convertElementToType
+module.exports = convertElementToType;
