@@ -2,8 +2,10 @@
 
 const format = (user) => {
   // TODO: answer here
+  const { name, email } = user;
+  return `${name} - ${email}`;
 };
 
-console.log(format({ name: "John", email: "john@example.com" }))
+console.log(format({ name: "John", email: "john@example.com" }));
 
-module.exports = format
+module.exports = format;
