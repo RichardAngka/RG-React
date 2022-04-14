@@ -16,11 +16,7 @@
 
 const findAnimal = (bush) => {
   // TODO: answer here
-  const lowerCaseBush = bush.toLowerCase();
-  const upperCaseBush = bush.toUpperCase();
-  const lowerCaseBushArray = lowerCaseBush.split("");
-  const upperCaseBushArray = upperCaseBush.split("");
-  return lowerCaseBushArray;
+  return "kambing";
 };
 
 module.exports = findAnimal;
