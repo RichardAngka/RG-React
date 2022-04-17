@@ -16,7 +16,13 @@
 
 const findAnimal = (bush) => {
   // TODO: answer here
-  return "kambing";
+  let output = "";
+  for (let i = 0; i < bush.length; i++) {
+    if (bush[i] == bush[i].toLowerCase()) {
+      output += bush[i];
+    }
+  }
+  return output;
 };
 
 module.exports = findAnimal;
