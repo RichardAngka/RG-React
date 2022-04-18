@@ -13,6 +13,20 @@
 
 const checkOmnipresent = (array, valueToFind) => {
   // TODO: answer here
+  let count = 0;
+  for (const arr of array) {
+    for (const element of arr) {
+      if (valueToFind == element) {
+        count++;
+        break;
+      }
+    }
+  }
+  if (count == array.length) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
-module.exports = checkOmnipresent
+module.exports = checkOmnipresent;
