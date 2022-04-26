@@ -1,6 +1,7 @@
 module.exports = class TextEditor {
     constructor() {
         // TODO: answer here
+        
     }
 
     write(c) {

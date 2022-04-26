@@ -35,14 +35,36 @@
 // - Siswa tersisa dengan preferensi 1, yaitu students = [1,1,1] dan sandwich paling atas adalah 0, sehingga siswa tidak dapat mengambil sandwich tersebut meskipun antri secara bergantian.
 // Jadi semua siswa yang tidak bisa makan sandwich adalah 3 orang.
 
+const Stack = require("../../assignment/parentheses-validation/stack");
+
 function countStudentsCantEat(students, sandwiches) {
-	return 0 // TODO: replace this
+  let count = 0;
+  let stack = new Stack();
+  for (let i = 0; i < students.length; i++) {
+    if (students[i] === 1 && sandwiches[i] === 1) {
+      stack.push(1);
+    } else if (students[i] === 0 && sandwiches[i] === 0) {
+      stack.push(0);
+    } else if (students[i] === 0 && sandwiches[i] === 1) {
+      stack.push(1);
+    } else if (students[i] === 1 && sandwiches[i] === 0) {
+      stack.push(0);
+    }
+  }
+  while (stack.top !== null) {
+    if (stack.top.data === 0) {
+      count += 1;
+      stack.pop();
+    } else if (stack.top.data === 1) {
+      stack.pop();
+    }
+  }
+  return count;
 }
 
-console.log(countStudentsCantEat([1,1,1,0,0,1], [1,0,0,0,1,1])); // 3
-console.log(countStudentsCantEat([1,1,0,0], [0,1,0,1])); // 0
+console.log(countStudentsCantEat([1, 1, 1, 0, 0, 1], [1, 0, 0, 0, 1, 1])); // 3
+console.log(countStudentsCantEat([1, 1, 0, 0], [0, 1, 0, 1])); // 0
 
 module.exports = {
-    countStudentsCantEat
-}
-
+  countStudentsCantEat,
+};
