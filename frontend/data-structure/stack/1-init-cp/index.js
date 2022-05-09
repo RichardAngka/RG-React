@@ -6,5 +6,6 @@ module.exports = class Stack {
     // TODO: answer here
     this.data = [];
     this.size = 10;
+    this.top = -1;
   }
 };

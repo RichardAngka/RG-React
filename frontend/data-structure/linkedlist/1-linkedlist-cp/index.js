@@ -12,17 +12,22 @@
 // Explanation: middle node nya 3 dan 4, kembalikan middle node kedua, maka dikembalikan nilai 4 beserta dengan next value nya, jadi 4, 5, 6
 
 function ListNode(val, next) {
-    this.val = (val===undefined ? 0 : val)
-    this.next = (next===undefined ? null : next)
+  this.val = val === undefined ? 0 : val;
+  this.next = next === undefined ? null : next;
 }
 
- function middleNode(head) {
-    let length = 1;
-    let cur = head;
-    let middle = head;
+function middleNode(head) {
+  let length = 1;
+  let cur = head;
+  let middle = head;
 
-    // TODO: answer here
-    return middle;
+  // TODO: answer here
+  while (cur) {
+    length++;
+    cur = cur.next;
+  }
+
+  return middle;
 }
 
-module.exports = { ListNode, middleNode }
+module.exports = { ListNode, middleNode };

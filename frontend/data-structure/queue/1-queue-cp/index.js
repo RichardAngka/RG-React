@@ -38,28 +38,19 @@
 const Stack = require("../../assignment/parentheses-validation/stack");
 
 function countStudentsCantEat(students, sandwiches) {
-  let count = 0;
-  let stack = new Stack();
-  for (let i = 0; i < students.length; i++) {
-    if (students[i] === 1 && sandwiches[i] === 1) {
-      stack.push(1);
-    } else if (students[i] === 0 && sandwiches[i] === 0) {
-      stack.push(0);
-    } else if (students[i] === 0 && sandwiches[i] === 1) {
-      stack.push(1);
-    } else if (students[i] === 1 && sandwiches[i] === 0) {
-      stack.push(0);
+  let cantEat = 0;
+  let queue = students;
+
+  while (students.length) {
+    if (queue[0] === sandwiches[0]) {
+      queue.shift();
+      sandwiches.shift();
+    } else {
+      cantEat++;
+      queue.shift();
     }
   }
-  while (stack.top !== null) {
-    if (stack.top.data === 0) {
-      count += 1;
-      stack.pop();
-    } else if (stack.top.data === 1) {
-      stack.pop();
-    }
-  }
-  return count;
+  return cantEat;
 }
 
 console.log(countStudentsCantEat([1, 1, 1, 0, 0, 1], [1, 0, 0, 0, 1, 1])); // 3

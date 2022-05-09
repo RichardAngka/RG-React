@@ -15,13 +15,18 @@
 // Explanation: 2^-2 = (1/2)^2 = 1/4 = 0.25
 
 function myPow(x, n) {
-    if (n === 0) return 1;
-    
-    let pow = Math.abs(n);
-    
-    // TODO: answer here
-    
-    // TODO: answer here
+  if (n === 0) return 1;
+
+  let pow = Math.abs(n);
+
+  // TODO: answer here
+  if (n < 0) {
+    return 1 / myPow(x, pow);
+  } else {
+    return myPow(x, pow - 1) * x;
+  }
+
+  // TODO: answer here
 }
 
-module.exports = { myPow }
+module.exports = { myPow };
