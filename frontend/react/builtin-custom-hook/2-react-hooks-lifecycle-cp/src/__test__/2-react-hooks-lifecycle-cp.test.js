@@ -4,7 +4,7 @@ import { RandomQuote } from "../App";
 import React from "react";
 
 describe("Render Quote", () => {
-  it("should render the Get another quote Button", () => {
+  it("should render the Get another quote Button", async () => {
     render(<RandomQuote />);
     const button = screen.getByText("Get another quote");
     expect(button).toBeInTheDocument();
@@ -18,8 +18,8 @@ describe("Render Quote", () => {
 
   it("shows Loading and data quote", async () => {
     render(<RandomQuote />);
-    expect(await screen.getByText("Loading...")).toBeInTheDocument();
-    expect(await screen.getByTestId("quote")).toBeInTheDocument();
-    expect(await screen.getByTestId("quote")).not.toBe(null);
+    expect(screen.getByText("Loading...")).toBeInTheDocument();
+    expect(screen.getByTestId("quote")).toBeInTheDocument();
+    expect(screen.getByTestId("quote")).not.toBe(null);
   });
 });

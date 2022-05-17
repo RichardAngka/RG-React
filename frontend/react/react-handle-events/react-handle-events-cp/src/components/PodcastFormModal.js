@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
 import Constants from "../Constants";
-import './PodcastFormModal.css';
+import "./PodcastFormModal.css";
 
 const PodcastFormModal = (props) => {
   const {
@@ -17,26 +17,41 @@ const PodcastFormModal = (props) => {
   } = props;
   const [formValues, setFormValues] = useState({});
 
+  console.log(formModalType);
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     // TODO: answer here
+    setFormValues({ ...formValues, [name]: value });
   };
 
   const handleFormSubmit = async () => {
     // TODO: answer here
+    if (formModalType === "ADD") {
+      await axios.post(Constants.API_URL);
+    }
+    await axios.put(`${Constants.API_URL}/${podcastId}`, formValues);
+
+    setShowFormModal(false);
   };
 
   const onCloseModal = () => {
     // TODO: answer here
+    setShowFormModal(false);
   };
 
   const getPodcastById = async () => {
     // TODO: answer here
+    const podcastData = await axios.get(`${Constants.API_URL}/${podcastId}`);
+    setPodcastList(podcastData);
   };
 
   useEffect(() => {
     // TODO: answer here
-  }, [showFormModal]);
+    if (formModalType === "UPDATE") {
+      getPodcastById();
+    }
+  }, [formModalType]);
 
   return (
     <Modal show={showFormModal} onHide={onCloseModal}>

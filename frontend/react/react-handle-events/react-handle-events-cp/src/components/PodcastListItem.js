@@ -1,17 +1,26 @@
-import { Button } from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 
-import '../components/PodcastListItem.css';
+import "../components/PodcastListItem.css";
 
-const PodcastListItem = ({ id, podcastItem, setFormModalType, setShowFormModal, setPodcastId }) => {
+const PodcastListItem = ({
+  id,
+  podcastItem,
+  setFormModalType,
+  setShowFormModal,
+  setPodcastId,
+}) => {
   const onClickUpdateBtn = () => {
     // TODO: answer here
-  }
+    setShowFormModal(true);
+    setFormModalType("UPDATE");
+    setPodcastId(id);
+  };
   return (
-    <div aria-label='podcast-list-item' className="list-item-container">
-      <img alt={'podcast-img'} width={300} src={podcastItem.imageUrl} />
+    <div aria-label="podcast-list-item" className="list-item-container">
+      <img alt={"podcast-img"} width={300} src={podcastItem.imageUrl} />
       <div className="podcast-content-container">
         <h3>{podcastItem.title}</h3>
-        <div className='podcast-subtitle-container'>
+        <div className="podcast-subtitle-container">
           <h6>Published by : {podcastItem.publisher}</h6>
           <h6>Durasi : {podcastItem.duration} menit</h6>
         </div>

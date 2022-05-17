@@ -36,3 +36,45 @@
     transform: rotate(360deg);
   }
 }
+
+.Main-App {
+  display: flex;
+  flex-direction: column;
+}
+
+.Header {
+  width: 100%;
+  background-color: #f6cb46;
+}
+
+.Header-Text {
+  padding-left: 16px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+
+.Center-Container {
+  padding: 56px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.Quote-Container {
+  border-radius: 32px 32px 32px 0;
+  padding: 32px;
+  background-color: #f6cb46;
+}
+
+.Author-Text {
+  color: #1c1c1c;
+  font-size: 12px;
+}
+
+.Button-Container {
+  background-color: #474df5;
+  border-radius: 8px;
+  border: none;
+  padding: 8px;
+  color: white;
+}
