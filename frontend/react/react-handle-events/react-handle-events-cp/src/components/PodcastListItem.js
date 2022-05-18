@@ -11,8 +11,8 @@ const PodcastListItem = ({
 }) => {
   const onClickUpdateBtn = () => {
     // TODO: answer here
-    setShowFormModal(true);
     setFormModalType("UPDATE");
+    setShowFormModal(true);
     setPodcastId(id);
   };
   return (

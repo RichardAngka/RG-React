@@ -17,8 +17,6 @@ const PodcastFormModal = (props) => {
   } = props;
   const [formValues, setFormValues] = useState({});
 
-  console.log(formModalType);
-
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     // TODO: answer here
@@ -28,11 +26,12 @@ const PodcastFormModal = (props) => {
   const handleFormSubmit = async () => {
     // TODO: answer here
     if (formModalType === "ADD") {
-      await axios.post(Constants.API_URL);
+      await axios.post(Constants.API_URL, formValues);
     }
     await axios.put(`${Constants.API_URL}/${podcastId}`, formValues);
 
     setShowFormModal(false);
+    setFormModalType("ADD");
   };
 
   const onCloseModal = () => {
