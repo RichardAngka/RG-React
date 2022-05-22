@@ -22,18 +22,22 @@ function App() {
     fetchData();
   }, []);
 
+  const onSubmit = (v) => {
+    setPostCardData([v, ...postCardData]);
+  };
+
   return (
     <div aria-label="App">
       <Navbar />
-      <UploadForm />
+      <UploadForm onSubmit={onSubmit} />
       {postCardData.map((item) => (
         <PostCard
           key={item.id}
           caption={item.content}
           image={item.image}
           id={item.id}
-          username={item.author.name}
-          userId={item.author.id}
+          username={item.author?.name}
+          userId={item.author?.id}
           date={item.createdAt}
           dislikeCount={item.dislikeCount}
           likeCount={item.likeCount}
