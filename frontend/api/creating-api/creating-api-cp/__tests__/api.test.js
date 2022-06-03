@@ -9,13 +9,13 @@ describe("Sample Test", () => {
 
 describe("Update and Delete Books ", () => {
   afterAll((done) => {
-    server.close()
-    done()
-  })
+    server.close();
+    done();
+  });
   test("It should add new book", async () => {
     const newBook = {
       title: "Ruangguru Book",
-      author: "Ruangguru Writer"
+      author: "Ruangguru Writer",
     };
 
     const response = await request(server).post("/books").send(newBook);
@@ -28,11 +28,11 @@ describe("Update and Delete Books ", () => {
 
   test("It should update title of a book", async () => {
     const getBookId = await request(server).get("/books");
-    const bookId = getBookId.body.data[1].id;
+    const bookId = getBookId.body.data[0].id;
 
     const updateABook = {
       title: "Updated A Book",
-      author: "Updated A Writer"
+      author: "Updated A Writer",
     };
 
     const response = await request(server)
@@ -47,7 +47,7 @@ describe("Update and Delete Books ", () => {
 
   test("It should delete a book", async () => {
     const getBookId = await request(server).get("/books");
-    const bookId = getBookId.body.data[1].id;
+    const bookId = getBookId.body.data[0].id;
 
     const response = await request(server).delete(`/books/${bookId}`);
     expect(response.statusCode).toEqual(200);

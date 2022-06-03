@@ -1,23 +1,23 @@
 // NOTE: React Router Dom v6 heavily based on window.location & window.history. This changes the behavior of the router, so we can't interact the history object directly with jest.
 
-import { render, screen, waitFor } from "@testing-library/react"
-import { API_URL } from "../api/config"
-import App from "../App"
+import { render, screen, waitFor } from "@testing-library/react";
+import { API_URL } from "../api/config";
+import App from "../App";
 
-import { MemoryRouter } from "react-router-dom"
+import { MemoryRouter } from "react-router-dom";
 
-import axios from "axios"
+import axios from "axios";
 
-jest.mock("axios")
+jest.mock("axios");
 jest.mock("react-router-dom", () => {
-  const originalModule = jest.requireActual("react-router-dom")
+  const originalModule = jest.requireActual("react-router-dom");
 
   return {
     __esModule: true,
     ...originalModule,
     BrowserRouter: ({ children }) => <div>{children}</div>,
-  }
-})
+  };
+});
 
 describe("Router", () => {
   beforeEach(() => {
@@ -62,7 +62,7 @@ describe("Router", () => {
               },
             ],
           },
-        })
+        });
       } else if (url === `${API_URL}/auth/session`) {
         return Promise.resolve({
           status: 200,
@@ -75,7 +75,7 @@ describe("Router", () => {
               email: "john doe",
             },
           },
-        })
+        });
       } else if (url === `${API_URL}/profile/cl2eb0giz0669s8pzbwdombr4`) {
         return Promise.resolve({
           status: 200,
@@ -113,53 +113,53 @@ describe("Router", () => {
               },
             },
           },
-        })
+        });
       } else {
         return Promise.resolve({
           status: 404,
           data: {},
-        })
+        });
       }
-    })
-  })
+    });
+  });
 
   it("should render the index page", async () => {
     render(
       <MemoryRouter initialEntries={["/"]}>
         <App />
-      </MemoryRouter>,
-    )
+      </MemoryRouter>
+    );
     expect(axios.get).toHaveBeenCalledWith(`${API_URL}/post/list`, {
       withCredentials: true,
-    })
+    });
     await waitFor(() => {
-      expect(screen.getByText("Test Caption 1111")).toBeInTheDocument()
-    })
-  })
+      expect(screen.getByText("Test Caption 1111")).toBeInTheDocument();
+    });
+  });
 
   it("should render /profile/<UserId> route", async () => {
     render(
       <MemoryRouter initialEntries={["/profile/cl2eb0giz0669s8pzbwdombr4"]}>
         <App />
-      </MemoryRouter>,
-    )
+      </MemoryRouter>
+    );
     expect(axios.get).toHaveBeenCalledWith(`${API_URL}/auth/session`, {
       withCredentials: true,
-    })
+    });
     expect(axios.get).toHaveBeenCalledWith(
       `${API_URL}/profile/cl2eb0giz0669s8pzbwdombr4`,
-      { withCredentials: true },
-    )
+      { withCredentials: true }
+    );
 
     await waitFor(() => {
-      const profile = screen.getAllByText("User Testing 2")
-      expect(profile).toHaveLength(3)
-    })
+      const profile = screen.getAllByText("User Testing 2");
+      expect(profile).toHaveLength(3);
+    });
 
-    const posts = await screen.findAllByLabelText("Post Card")
-    expect(posts).toHaveLength(2)
+    const posts = await screen.findAllByLabelText("Post Card");
+    expect(posts).toHaveLength(2);
 
-    expect(posts[0]).toHaveTextContent("Test Caption 2222")
-    expect(posts[1]).toHaveTextContent("Test Caption 3333")
-  })
-})
+    expect(posts[0]).toHaveTextContent("Test Caption 2222");
+    expect(posts[1]).toHaveTextContent("Test Caption 3333");
+  });
+});
